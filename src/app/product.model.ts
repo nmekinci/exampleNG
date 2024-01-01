@@ -5,5 +5,11 @@ export class Product {
         public description?: string,
         public imageUrl?: string,
         public price?: number,
-    ){}
+    ){
+        // this.id = 0;
+        // this.name = "";
+        // this.description = "";
+        // this.imageUrl = "";
+        // this.price = 1;
+    }
 }
