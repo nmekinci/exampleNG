@@ -1,9 +1,19 @@
 <div class="bg-primary text-white m-2 p-2">
     There are {{ model.getProducts().length }} products in the repository.
 </div>
-<div>
-    <h2>{{product?.name || 'There is no content' }}</h2>
-    <h2 [textContent]="product?.name"></h2>
-    <img src="assets/img/{{product?.imageUrl}}">
-    <img [src]="'assets/img/' + product?.imageUrl" alt="">
+<div class="text-white" [class]="getClasses(1)">
+    first pro of catalog {{ model.getProductById(1)?.name }}
+</div>
+
+<div class="text-white" [class]="getClasses(2)">
+    second pro of catalog {{ model.getProductById(2)?.name }}
+</div>
+
+<button class="btn btn-primary" [class.disabled]="disabled">Submit</button>
+
+<div class="m-2 p-2" [ngClass]="getClassMap(1)">
+    first pro of catalog {{ model.getProductById(1)?.name }}
+</div>
+<div class="m-2 p-2" [ngClass]="getClassMap(2)">
+    second pro of catalog {{ model.getProductById(2)?.name }}
 </div>

@@ -11,6 +11,22 @@ import { Product } from "./product.model";
 
 export class ProductComponent {
     model: ProductRepository = new ProductRepository()
+    disabled = false;
 
-    product: Product | undefined = this.model.getProductById(1) 
+    getClasses(id: number): string {
+        let product = this.model.getProductById(id);
+         return ( (product?.price ?? 0) <= 1000 ? "bg-info" : "bg-warning") + " m-2 p-2"
+    }
+
+    getClassMap(id: number): DecoratorMetadataObject{
+        let product = this.model.getProductById(id);
+         return {
+            "bg-info": (product?.price ?? 0) <= 1000,
+            "bg-warning": (product?.price ?? 0) > 1000,
+            "text-center text-white": product?.name == "Apple"
+         }
+    }
+
+
+
 }
