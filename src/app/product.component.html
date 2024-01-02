@@ -1,4 +1,3 @@
-<div (click)="onDivClicked()" style="width: 300px; height: 300px; background-color: darkkhaki;">
-  <button name="btn1" (click)="ocSubmit($event)">Submit</button>
-  <button name="btn2" (click)="ocSubmit($event)">Submit</button>
-</div>
+<!-- <input type="text" (keyup)="onKeyUp($event)"> -->
+<!-- <input type="text" (keyup.enter)="onKeyUp($event)"> -->
+<input type="text" #email (keyup.enter)="onKeyUp(email.value)">

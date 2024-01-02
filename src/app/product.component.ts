@@ -12,14 +12,22 @@ import { Product } from "./product.model";
 export class ProductComponent {
     model: ProductRepository = new ProductRepository()
     
+    // onKeyUp($event:KeyboardEvent){
+    //     if($event.keyCode === 13) {
+    //         console.log('Enter pressed');
+    //     }
+    //     if($event.key === 'Enter'){
+    //         console.log('Enter with key');
+    //     }
+    // }
 
-    ocSubmit($event : Event) {
-        $event.stopPropagation()
-        console.log('button clicked');
-        console.log($event);
+    // onKeyUp($event : Event){
+    //     const target = $event.target as HTMLInputElement;
+    //     console.log(target?.value);
+    // }
+    onKeyUp(email: string ){
+        
+        console.log(email);
     }
-
-    onDivClicked() {
-        console.log('div clicked');
-    }
+    
 }
