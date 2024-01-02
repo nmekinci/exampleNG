@@ -12,8 +12,8 @@
 <button class="btn btn-primary" [class.disabled]="disabled">Submit</button>
 
 <div class="m-2 p-2" [ngClass]="getClassMap(1)">
-    first pro of catalog {{ model.getProductById(1)?.name }}
+    <span [style.color]="color">first pro</span>  of catalog {{ model.getProductById(1)?.name }}
 </div>
 <div class="m-2 p-2" [ngClass]="getClassMap(2)">
-    second pro of catalog {{ model.getProductById(2)?.name }}
+    <span [ngStyle]="getStyles(2)">second pro</span> of catalog {{ model.getProductById(2)?.name }}
 </div>

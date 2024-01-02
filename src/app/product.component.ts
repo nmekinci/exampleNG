@@ -18,7 +18,7 @@ export class ProductComponent {
          return ( (product?.price ?? 0) <= 1000 ? "bg-info" : "bg-warning") + " m-2 p-2"
     }
 
-    getClassMap(id: number): DecoratorMetadataObject{
+    getClassMap(id: number): Object{
         let product = this.model.getProductById(id);
          return {
             "bg-info": (product?.price ?? 0) <= 1000,
@@ -27,6 +27,15 @@ export class ProductComponent {
          }
     }
 
+    color: string = (this.model.getProductById(2)?.price ?? 0) <= 1000 ? "green" : "red";
+    fontSize: string = "25px";
 
+    getStyles(id : number) : Object {
+        let product = this.model.getProductById(id);
+        return {
+            color: (product?.price ?? 0) <= 1000 ? "green" : "red",
+            fontSize: "25px",
+        }
+    }
 
 }
