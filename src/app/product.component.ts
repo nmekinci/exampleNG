@@ -1,33 +1,36 @@
 
 import { Component } from "@angular/core";
 import { ProductRepository } from "./repository.model";
-import { Product } from "./product.model";
+
 
 @Component({
     selector: 'app',
-    templateUrl:'product.component.html',
+    // template:`
+    // <input [value]="email" (keyup.enter)="onKeyUp($event)">
+    // `,
+    template:`
+    <input [(ngModel)]="email" (keyup.enter)="onKeyUp()">
+    <br>
+    <span>{{email}}</span>
+    `,
     styleUrls: ['product.component.css']
 })
 
 export class ProductComponent {
-    model: ProductRepository = new ProductRepository()
+    model: ProductRepository = new ProductRepository();
+    email = "email@email.com";
     
-    // onKeyUp($event:KeyboardEvent){
-    //     if($event.keyCode === 13) {
-    //         console.log('Enter pressed');
-    //     }
-    //     if($event.key === 'Enter'){
-    //         console.log('Enter with key');
+   
+    // onKeyUp(event: Event) {
+    //     const target = event.target as HTMLInputElement;
+    //     if (target) {
+    //         this.email = target.value;
+    //         console.log(this.email);
     //     }
     // }
-
-    // onKeyUp($event : Event){
-    //     const target = $event.target as HTMLInputElement;
-    //     console.log(target?.value);
-    // }
-    onKeyUp(email: string ){
+    onKeyUp() {
         
-        console.log(email);
+            console.log(this.email);
+        }
     }
     
-}
