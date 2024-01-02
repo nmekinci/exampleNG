@@ -28,3 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ![Alt text](image.png) Property Binding
 ![Alt text](image-1.png) Class Binding
+![Alt text](image-2.png) Event Binding

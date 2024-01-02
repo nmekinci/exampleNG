@@ -1,19 +1,4 @@
-<div class="bg-primary text-white m-2 p-2">
-    There are {{ model.getProducts().length }} products in the repository.
-</div>
-<div class="text-white" [class]="getClasses(1)">
-    first pro of catalog {{ model.getProductById(1)?.name }}
-</div>
-
-<div class="text-white" [class]="getClasses(2)">
-    second pro of catalog {{ model.getProductById(2)?.name }}
-</div>
-
-<button class="btn btn-primary" [class.disabled]="disabled">Submit</button>
-
-<div class="m-2 p-2" [ngClass]="getClassMap(1)">
-    <span [style.color]="color">first pro</span>  of catalog {{ model.getProductById(1)?.name }}
-</div>
-<div class="m-2 p-2" [ngClass]="getClassMap(2)">
-    <span [ngStyle]="getStyles(2)">second pro</span> of catalog {{ model.getProductById(2)?.name }}
+<div (click)="onDivClicked()" style="width: 300px; height: 300px; background-color: darkkhaki;">
+  <button name="btn1" (click)="ocSubmit($event)">Submit</button>
+  <button name="btn2" (click)="ocSubmit($event)">Submit</button>
 </div>
