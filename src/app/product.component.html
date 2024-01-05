@@ -1,2 +1,18 @@
+<div *ngIf="model.getProducts().length > 0; then productList; else noProducts">
+  there are {{ model.getProducts().length }} products in the repository
+</div>
+
+<ng-template #productList
+  ><div class="bg-primary text-white m-2 p-2">
+    there are {{ model.getProducts().length }} products in the repository
+  </div></ng-template
+>
+<ng-template #noProducts
+  ><div class="bg-primary text-white m-2 p-2">
+    there is no products in the repository
+  </div></ng-template
+>
+
+
 
 
