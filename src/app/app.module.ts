@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductComponent } from './product.component';
 import {FormsModule} from '@angular/forms';
+import { SummaryPipe } from './summary.pipe';
 
 
 @NgModule({
   declarations: [
-    ProductComponent
+    ProductComponent,
+    SummaryPipe
   ],
   imports: [
     BrowserModule,
