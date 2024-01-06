@@ -7,7 +7,7 @@ import { ProductRepository } from '../repository.model';
   styleUrl: './admin-products.component.css'
 })
 export class AdminProductsComponent {
-
+  selectedProduct: string | undefined;
   products;
   model: ProductRepository;
   constructor(){
