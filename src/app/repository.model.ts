@@ -22,4 +22,16 @@ export class ProductRepository {
   getProductCount():number {
     return this.products.length;
   }
+
+  addProduct(product : Product){
+    this.products.push(product)
+  }
+
+  deleteProduct(product: Product) {
+    this.products = this.products.filter( item => item != product)
+
+    // let index = this.products.indexOf(product)
+    // this.products.splice(index,1)
+  }
+
 }
