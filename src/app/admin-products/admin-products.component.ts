@@ -18,20 +18,26 @@ export class AdminProductsComponent {
 
 
   getSelected(product: Product): boolean{
-    // console.log(product.name === this.selectedProduct);
     return product == this.selectedProduct
   }
 
   editProduct( product: Product) {
     this.selectedProduct = product;
   }
+  saveChanges(name:string, desc:string, price: number, url:string){
+    // const p = this.model.getProductById((this.selectedProduct.id != undefined) ? this.selectedProduct.id :0)
+    const p = this.model.getProductById(this.selectedProduct.id!);
+    p!.name = name;
+    p!.price = price;
+    p!.imageUrl = url;
+    p!.description = desc;
+    this.selectedProduct = {
+      name:'',
+      price:0,
+      imageUrl:'',
+      description:''
+    };
+  }
 }
 
-  // onChange( event: Event){
-  //   const target = event.target as HTMLInputElement
-  //   this.selectedProduct = target.value 
-  // }
-  // onChange1( pName: Element){
-  //   const target = pName as HTMLInputElement
-  //   this.selectedProduct = target.value 
-  //}
+
