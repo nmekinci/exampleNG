@@ -8,7 +8,7 @@ import { Product } from '../product.model';
   styleUrl: './admin-products.component.css'
 })
 export class AdminProductsComponent {
-  selectedProduct: string | undefined;
+  selectedProduct!: Product;
   products;
   model: ProductRepository;
   constructor(){
@@ -18,16 +18,20 @@ export class AdminProductsComponent {
 
 
   getSelected(product: Product): boolean{
-    console.log(product.name === this.selectedProduct);
-    return product.name === this.selectedProduct
+    // console.log(product.name === this.selectedProduct);
+    return product == this.selectedProduct
   }
 
-  onChange( event: Event){
-    const target = event.target as HTMLInputElement
-    this.selectedProduct = target.value 
-  }
-  onChange1( pName: Element){
-    const target = pName as HTMLInputElement
-    this.selectedProduct = target.value 
+  editProduct( product: Product) {
+    this.selectedProduct = product;
   }
 }
+
+  // onChange( event: Event){
+  //   const target = event.target as HTMLInputElement
+  //   this.selectedProduct = target.value 
+  // }
+  // onChange1( pName: Element){
+  //   const target = pName as HTMLInputElement
+  //   this.selectedProduct = target.value 
+  //}
