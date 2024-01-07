@@ -18,11 +18,11 @@
                 <tbody>
                   <tr
                     *ngFor="let product of products"
-                    (mouseover)="selectedProduct = product.name"
-                    (mouseleave)="selectedProduct = '(None)'"
+                    (mouseover)="pName.value = product.name || ' ' "
+                    (mouseleave)="pName.value = '(None)'"
                     [class.bg-info]="getSelected(product)"
                   >
-                    <td>{{ product.id }}{{ getSelected(product) }}</td>
+                    <td>{{ product.id }}{{ getSelected(product) }}{{pName.value === product.name}}</td>
                     <td><img src="/assets/img/{{ product.imageUrl }}" width="80" /></td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
@@ -38,7 +38,8 @@
             <div class="form-group">
                 <label>Product Name</label>
                 <!-- <input (input)="selectedProduct=$event.target.value" type="text" class="form-control"> -->
-                <input (input)="onChange($event)" type="text" class="form-control">
+                <!-- <input (input)="onChange($event)" type="text" class="form-control"> -->
+                <input #pName (keyup.enter)="onChange1(pName)" type="text" class="form-control">
             </div>
         </div>
     </div>

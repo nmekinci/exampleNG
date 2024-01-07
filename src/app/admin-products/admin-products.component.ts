@@ -26,4 +26,8 @@ export class AdminProductsComponent {
     const target = event.target as HTMLInputElement
     this.selectedProduct = target.value 
   }
+  onChange1( pName: Element){
+    const target = pName as HTMLInputElement
+    this.selectedProduct = target.value 
+  }
 }
