@@ -24,13 +24,13 @@ export class AdminProductsComponent {
   editProduct( product: Product) {
     this.selectedProduct = product;
   }
-  saveChanges(name:string, desc:string, price: number, url:string){
+  saveChanges(){
     // const p = this.model.getProductById((this.selectedProduct.id != undefined) ? this.selectedProduct.id :0)
     const p = this.model.getProductById(this.selectedProduct.id!);
-    p!.name = name;
-    p!.price = price;
-    p!.imageUrl = url;
-    p!.description = desc;
+    p!.name = this.selectedProduct.name;
+    p!.price = this.selectedProduct.price;
+    p!.imageUrl = this.selectedProduct.imageUrl;
+    p!.description = this.selectedProduct.description;
     this.selectedProduct = {
       name:'',
       price:0,

@@ -41,7 +41,7 @@
         <label>Product Name</label>
         <input
           #pName
-          [value]="selectedProduct.name"
+          [(ngModel)]="selectedProduct.name"
           type="text"
           class="form-control"
         />
@@ -50,7 +50,7 @@
         <label>Product Price</label>
         <input
           #pPrice
-          [value]="selectedProduct.price"
+          [(ngModel)]="selectedProduct.price"
           type="text"
           class="form-control"
         />
@@ -59,7 +59,7 @@
         <label>Product ImageUrl</label>
         <input
           #pImageUrl
-          [value]="selectedProduct.imageUrl"
+          [(ngModel)]="selectedProduct.imageUrl"
           type="text"
           class="form-control"
         />
@@ -68,7 +68,7 @@
         <label>Product Description</label>
         <textarea
           #pDescription
-          [value]="selectedProduct.description"
+          [(ngModel)]="selectedProduct.description"
           type="text"
           class="form-control"
         ></textarea>
@@ -76,7 +76,7 @@
       <button
         class="btn btn-primary"
         (click)="
-         saveChanges(pName.value, pDescription.value, +pPrice.value, pImageUrl.value)
+         saveChanges()
         "
       >
         Save Changes
