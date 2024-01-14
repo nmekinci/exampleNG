@@ -21,8 +21,6 @@ get jsonProduct() {
 addProduct(p: Product) {
   console.log("New Pro" + this.jsonProduct);
 }
-log(m:any){
-  console.log(m);
-}
+
 
 }
