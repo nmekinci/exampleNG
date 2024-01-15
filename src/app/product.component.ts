@@ -22,5 +22,29 @@ addProduct(p: Product) {
   console.log("New Pro" + this.jsonProduct);
 }
 
+log(x:any){
+console.log(x);
+}
+
+getValidationErrors(state: any){
+let ctrlName:string = state.name
+let messages:string[] = []
+if(state.errors){
+  for ( let errorName in state.errors) {
+    switch (errorName) {
+      case "required":
+        messages.push(`You  must enter a ${ctrlName}`)
+        break;
+      case "minlength":
+        messages.push(`min 3 chars ${ctrlName}`)
+        break;
+      case "pattern":
+        messages.push(`only chars and spaces ${ctrlName}`)
+        break;
+    }
+  }
+}
+return messages;
+}
 
 }
