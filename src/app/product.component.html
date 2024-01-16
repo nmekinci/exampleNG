@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-8">
             <div class="m-3">
+                <form #form="ngForm" (ngSubmit)="submitForm(form)">
                 <div class="bg-info text-white m-2 p-2">
                     {{ jsonProduct}}
                 </div>
@@ -34,7 +35,8 @@
                     <input required [(ngModel)]="newProduct.imageUrl" name="pImageUrl" #imageUrl="ngModel" type="text" class="form-control">
                     <div class="alert alert-danger" *ngIf="!imageUrl.valid && imageUrl.touched">Image is Required</div>
                 </div>
-                <button (click)="addProduct(newProduct)" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
             </div>
         </div>
     </div>
