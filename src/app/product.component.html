@@ -63,7 +63,11 @@
                         </ul>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button 
+                type="submit"
+                 class="btn btn-primary"
+                 [disabled]="formSubmitted && form.invalid"
+                 [class.btn-secondary]="formSubmitted && form.invalid">Submit</button>
             </form>
             </div>
         </div>
