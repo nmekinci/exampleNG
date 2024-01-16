@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductRepository } from './repository.model';
 import { Product } from './product.model';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app',
@@ -10,20 +10,24 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 })
 export class ProductComponent {
   productForm: FormGroup = new FormGroup({
-    name: new FormControl('samsung'),
-    description: new FormControl('good'),
-    price: new FormControl('1000'),
-    imageUrl: new FormControl('1.jpg'),
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    description: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', Validators.required),
   });
 
- onSubmit(){
-  console.log(this.productForm.value);
- }
+  get name(){
+    return this.productForm.get('name')
+  }
 
- updateProduct(){
-  this.productForm.patchValue({
-    name:'Iphone',
-    price:'5000'
-  })
- }
+  onSubmit() {
+    console.log(this.productForm.value);
+  }
+
+  updateProduct() {
+    this.productForm.patchValue({
+      name: 'Iphone',
+      price: '5000',
+    });
+  }
 }
