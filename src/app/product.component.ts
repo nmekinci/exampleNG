@@ -10,14 +10,18 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 })
 export class ProductComponent {
   productForm: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(20),
+    ]),
     description: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
     imageUrl: new FormControl('', Validators.required),
   });
 
-  get name(){
-    return this.productForm.get('name')
+  get name() {
+    return this.productForm.get('name');
   }
 
   onSubmit() {
