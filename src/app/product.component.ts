@@ -30,6 +30,7 @@ export class ProductComponent {
   formSubmitted:boolean = false;
 
   submitForm(form:NgForm){
+    console.log(form);
     this.formSubmitted = true;
     if(form.valid){
       this.addProduct(this.newProduct)
@@ -39,8 +40,23 @@ export class ProductComponent {
     }
   }
 
-  getValidationErrors(state: any) {
-    let ctrlName: string = state.name;
+  getFormValidationErrors(form: NgForm): string[] {
+    let messages: string[] = [];
+
+    Object.keys(form.controls).forEach(key => {
+      console.log(key); // name
+      console.log(form.controls[key]); // FormControl(name)
+
+      this.getValidationErrors(form.controls[key], key)
+      .forEach(message => messages.push(message))
+
+    })
+
+    return messages;
+  }
+
+  getValidationErrors(state: any, key: string = '') {
+    let ctrlName: string = state.name || key;
     let messages: string[] = [];
     if (state.errors) {
       for (let errorName in state.errors) {
