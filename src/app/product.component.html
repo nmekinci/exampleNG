@@ -24,7 +24,12 @@
     <div class="form-group">
         <label>ImageUrl</label>
         <input class="form-control" formControlName="imageUrl">
-        
+        <div class="alert alert-danger" *ngIf="imageUrl?.touched && imageUrl?.invalid">
+            <ul>
+                <li *ngIf="imageUrl?.errors!['required']">Name is required</li>
+                <li *ngIf="imageUrl?.errors!['wrongExtension']">Wrong Extension</li>
+            </ul>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary" (click)="updateProduct()">Submit</button>
