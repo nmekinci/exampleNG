@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductRepository } from './repository.model';
 import { Product } from './product.model';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { ImageValidators } from './image.validators';
 
 @Component({
   selector: 'app',
@@ -9,72 +10,32 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['product.component.css'],
 })
 export class ProductComponent {
-  model: ProductRepository = new ProductRepository();
+  productForm: FormGroup = new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(20),
+    ]),
+    description: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', [Validators.required,ImageValidators.isValidExtension]),
+  });
 
-  newProduct: Product = new Product();
-
-  //  productName : string | undefined = this.model.getProductById(1)?.name
-
-  get jsonProduct() {
-    return JSON.stringify(this.newProduct);
+  get name() {
+    return this.productForm.get('name');
+  }
+  get imageUrl() {
+    return this.productForm.get('imageUrl');
   }
 
-  addProduct(p: Product) {
-    console.log('New Pro' + this.jsonProduct);
+  onSubmit() {
+    console.log(this.productForm.value);
   }
 
-  log(x: any) {
-    console.log(x);
+  updateProduct() {
+    this.productForm.patchValue({
+      name: 'Iphone',
+      price: '5000',
+    });
   }
-
-  formSubmitted:boolean = false;
-
-  submitForm(form:NgForm){
-    console.log(form);
-    this.formSubmitted = true;
-    if(form.valid){
-      this.addProduct(this.newProduct)
-      this.newProduct = new Product()
-      form.reset()
-      this.formSubmitted = false;
-    }
-  }
-
-  getFormValidationErrors(form: NgForm): string[] {
-    let messages: string[] = [];
-
-    Object.keys(form.controls).forEach(key => {
-      console.log(key); // name
-      console.log(form.controls[key]); // FormControl(name)
-
-      this.getValidationErrors(form.controls[key], key)
-      .forEach(message => messages.push(message))
-
-    })
-
-    return messages;
-  }
-
-  getValidationErrors(state: any, key: string = '') {
-    let ctrlName: string = state.name || key;
-    let messages: string[] = [];
-    if (state.errors) {
-      for (let errorName in state.errors) {
-        switch (errorName) {
-          case 'required':
-            messages.push(`You  must enter a ${ctrlName}`);
-            break;
-          case 'minlength':
-            messages.push(`min 3 chars ${ctrlName}`);
-            break;
-          case 'pattern':
-            messages.push(`only chars and spaces ${ctrlName}`);
-            break;
-        }
-      }
-    }
-    return messages;
-  }
-
-
 }
