@@ -1,0 +1,53 @@
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Post } from './posts.model';
+import { PathLocationStrategy } from '@angular/common';
+
+@Component({
+  selector: 'posts',
+  templateUrl: './posts.component.html',
+  styleUrl: './posts.component.css'
+})
+export class PostsComponent {
+  posts:[any] = [{}];
+  private url:string = 'https://jsonplaceholder.typicode.com/posts'
+
+  constructor(private http: HttpClient) {
+    http.get(this.url)
+    .subscribe(res => {
+      this.posts = <[any]>res;
+    } )
+  }
+
+  createPost(input:HTMLInputElement) {
+    const post:Post = {title: input.value};
+    input.value = ''
+    this.http.post(this.url, JSON.stringify(post))
+    .subscribe((res: {id?:string}) => {
+      post.id = res.id;
+      this.posts.splice(0,0,post)
+      console.log(res);
+    })
+  }
+
+  updatePost( post: Post) {
+    post.title = 'updated'
+    this.http.put(this.url+'/'+post.id, JSON.stringify(post))
+    // this.http.patch(this.url+'/'+post.id, JSON.stringify({
+    //   title: 'updated'
+    // }))
+    .subscribe( res => {
+      console.log(res);
+    })
+  }
+
+  deletePost( post:Post ) {
+    this.http.delete(this.url + '/' + post.id)
+    .subscribe(res => {
+      console.log(res);
+      let index = this.posts.indexOf(post)
+      this.posts.splice(index,1)
+    })
+  }
+
+}
