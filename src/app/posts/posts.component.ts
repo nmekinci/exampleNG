@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Post } from './posts.model';
+import { PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'posts',
@@ -26,6 +27,26 @@ export class PostsComponent {
       post.id = res.id;
       this.posts.splice(0,0,post)
       console.log(res);
+    })
+  }
+
+  updatePost( post: Post) {
+    post.title = 'updated'
+    this.http.put(this.url+'/'+post.id, JSON.stringify(post))
+    // this.http.patch(this.url+'/'+post.id, JSON.stringify({
+    //   title: 'updated'
+    // }))
+    .subscribe( res => {
+      console.log(res);
+    })
+  }
+
+  deletePost( post:Post ) {
+    this.http.delete(this.url + '/' + post.id)
+    .subscribe(res => {
+      console.log(res);
+      let index = this.posts.indexOf(post)
+      this.posts.splice(index,1)
     })
   }
 
