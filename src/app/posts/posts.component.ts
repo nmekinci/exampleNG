@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Post } from './posts.model';
+import { PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'posts',
@@ -37,6 +38,15 @@ export class PostsComponent {
     // }))
     .subscribe( res => {
       console.log(res);
+    })
+  }
+
+  deletePost( post:Post ) {
+    this.http.delete(this.url + '/' + post.id)
+    .subscribe(res => {
+      console.log(res);
+      let index = this.posts.indexOf(post)
+      this.posts.splice(index,1)
     })
   }
 
