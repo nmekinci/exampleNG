@@ -11,6 +11,7 @@ import { PostService } from '../services/post.service';
 })
 export class PostsComponent implements OnInit {
   posts:[any] = [{}];
+  error: any;
   
 
   constructor(private postService: PostService) {  }
@@ -19,7 +20,7 @@ export class PostsComponent implements OnInit {
     this.postService.getPosts()
     .subscribe((res) => {
       this.posts = <[any]>res;
-    } )
+    },error => this.error = error)
   }
 
   createPost(input:HTMLInputElement) {
@@ -51,7 +52,8 @@ export class PostsComponent implements OnInit {
       console.log(res);
       let index = this.posts.indexOf(post)
       this.posts.splice(index,1)
-    })
+    },
+    error => this.error = error)
   }
 
 }
